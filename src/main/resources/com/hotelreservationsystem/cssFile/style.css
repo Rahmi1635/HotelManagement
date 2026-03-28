@@ -1,0 +1,6 @@
+.rootPane {
+    -fx-background-image: url("/com/hotelreservationsystem/pictures/otelimiz.jpg");
+    -fx-background-size: cover;   /* Tüm ekranı kaplar */
+    -fx-background-position: center center;
+    -fx-border-color:linear-gradient(to bottom right,#2f3f89,#9231b5);
+}

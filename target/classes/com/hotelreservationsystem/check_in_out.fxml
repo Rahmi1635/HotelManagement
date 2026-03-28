@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.hotelreservationsystem.ui.controller.CheckInOutController"
+           prefWidth="950" prefHeight="500">
+
+    <AnchorPane prefWidth="950" prefHeight="500">
+
+        <!-- TITLE -->
+        <Label layoutX="30" layoutY="20" text="Check-In / Check-Out">
+            <font>
+                <Font size="24"/>
+            </font>
+        </Label>
+
+        <!-- SEARCH -->
+        <TextField fx:id="txtSearch"
+                   layoutX="30" layoutY="70"
+                   prefWidth="220"
+                   promptText="Reservation / Customer / Room"/>
+
+        <ComboBox fx:id="cmbStatus"
+                  layoutX="270" layoutY="70"
+                  prefWidth="160"/>
+
+        <Button text="Search"
+                layoutX="450" layoutY="70"
+                onAction="#search"/>
+
+        <Button text="Refresh"
+                layoutX="530" layoutY="70"
+                onAction="#refresh"/>
+
+        <!-- TABLE -->
+        <TableView fx:id="tblReservations"
+                   layoutX="30" layoutY="120"
+                   prefWidth="890" prefHeight="260">
+
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+                <TableColumn fx:id="colCustomerId" text="Customer" prefWidth="120"/>
+                <TableColumn fx:id="colRoomId" text="Room" prefWidth="80"/>
+                <TableColumn fx:id="colPlannedIn" text="Planned In" prefWidth="150"/>
+                <TableColumn fx:id="colPlannedOut" text="Planned Out" prefWidth="150"/>
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="150"/>
+            </columns>
+        </TableView>
+
+        <!-- SELECTED INFO -->
+        <Label layoutX="30" layoutY="400" text="Selected Reservation:"/>
+        <TextField fx:id="txtSelectedId"
+                   layoutX="170" layoutY="396"
+                   prefWidth="80"
+                   editable="false"/>
+
+        <TextField fx:id="txtSelectedStatus"
+                   layoutX="270" layoutY="396"
+                   prefWidth="160"
+                   editable="false"/>
+
+        <!-- ACTION BUTTONS -->
+        <Button fx:id="btnCheckIn"
+                text="Check-In"
+                layoutX="470" layoutY="390"
+                prefWidth="120"
+                onAction="#checkIn"/>
+
+        <Button fx:id="btnCheckOut"
+                text="Check-Out"
+                layoutX="610" layoutY="390"
+                prefWidth="120"
+                onAction="#checkOut"/>
+
+        <Button text="Back"
+                layoutX="800" layoutY="390"
+                prefWidth="120"
+                onAction="#backToDashboard"/>
+
+    </AnchorPane>
+</StackPane>

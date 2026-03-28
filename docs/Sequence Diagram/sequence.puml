@@ -1,0 +1,68 @@
+@startuml sequence
+title Otel Rezervasyon Sistemi - Customer Sequence Diagram
+
+actor Customer
+boundary "UI / WebApp" as UI
+control AuthService
+control RoomService
+control ReservationService
+database Database
+
+'======================================================
+' 1. LOGIN AKIŞI
+'======================================================
+== Login ==
+
+Customer -> UI: Giriş bilgilerini gir\n(email, şifre)
+UI -> AuthService: authenticate(email, şifre)
+AuthService -> Database: findUserByEmail(email)
+Database --> AuthService: kullanıcı / null
+AuthService -> AuthService: şifre doğrulama
+
+alt Giriş başarılı
+    AuthService --> UI: authToken / session
+    UI --> Customer: Giriş başarılı\n(Ana sayfaya yönlendir)
+else Giriş başarısız
+    AuthService --> UI: Hata (Geçersiz kullanıcı\nveya şifre)
+    UI --> Customer: Hata mesajı göster
+    return
+end
+
+'======================================================
+' 2. ODA ARAMA AKIŞI
+'======================================================
+== Oda Arama ==
+
+Customer -> UI: Oda ara\n(girişTarihi, çıkışTarihi,\nkişiSayısı, odaTipi)
+UI -> RoomService: searchAvailableRooms(kriterler, authToken)
+RoomService -> Database: getAvailableRooms(kriterler)
+Database --> RoomService: uygunOdalar[]
+
+alt Uygun oda var
+    RoomService --> UI: uygunOdalar[]
+    UI --> Customer: Uygun odaları listele
+else Uygun oda yok
+    RoomService --> UI: []
+    UI --> Customer: "Uygun oda bulunamadı" mesajı
+    return
+end
+
+'======================================================
+' 3. REZERVASYON OLUŞTURMA AKIŞI
+'======================================================
+== Rezervasyon Oluşturma ==
+
+Customer -> UI: Listeden oda seç\n(odaId)
+Customer -> UI: Rezervasyonu onayla
+UI -> ReservationService: createReservation(\n  odaId,\n  müşteriBilgileri,\n  tarihler,\n  authToken\n)
+
+ReservationService -> Database: createReservation(...)
+Database --> ReservationService: rezervasyonId
+
+ReservationService -> Database: updateRoomStatus(odaId, REZERVE)
+Database --> ReservationService: güncellemeOnayı
+
+ReservationService --> UI: RezervasyonDetayları(\n  rezervasyonId,\n  özetBilgiler\n)
+UI --> Customer: Rezervasyon onayı göster\n(rezervasyon numarası, özet)
+
+@enduml

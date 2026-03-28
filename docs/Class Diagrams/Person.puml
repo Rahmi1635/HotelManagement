@@ -1,0 +1,60 @@
+@startuml
+package "com.hotelreservationsystem.domain.user" {
+
+  abstract class Person {
+    - user_id : long
+    - first_name : String
+    - last_name : String
+    - username : String
+    - email : String
+    - phone : String
+    - tc : String
+    - hashed_password : String
+    - role : Role
+    - created_at : LocalDate
+
+    + Person(first_name : String, last_name : String, username : String, email : String, phone : String, tc : String, hashed_password : String)
+    + Person(user_id : long, first_name : String, last_name : String, username : String, email : String, phone : String, tc : String, hashed_password : String, role : Role)
+    + Person()
+
+    + getUser_id() : long
+    + setUser_id(user_id : long) : void
+
+    + getFirst_name() : String
+    + setFirst_name(first_name : String) : void
+
+    + getLast_name() : String
+    + setLast_name(last_name : String) : void
+
+    + getUsername() : String
+    + setUsername(username : String) : void
+
+    + getEmail() : String
+    + setEmail(email : String) : void
+
+    + getPhone() : String
+    + setPhone(phone : String) : void
+
+    + getTc() : String
+    + setTc(tc : String) : void
+
+    + getHashed_password() : String
+    + setHashed_password(hashed_password : String) : void
+
+    + getRole() : Role
+    + setRole(role : Role) : void
+
+    + getCreated_at() : LocalDate
+    + setCreated_at(created_at : LocalDate) : void
+
+    + logIn(username : String, hashed_password : String) : void
+    + showInfo() : void
+  }
+
+  class Role
+  class LocalDate
+
+  Person ..> Role
+  Person ..> LocalDate
+}
+@enduml

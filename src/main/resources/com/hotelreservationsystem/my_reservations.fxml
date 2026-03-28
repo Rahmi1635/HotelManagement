@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hotelreservationsystem.ui.controller.MyReservationsController">
+
+
+    <top>
+        <Label text="My Reservations"
+               BorderPane.alignment="CENTER"
+               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+        </Label>
+
+    </top>
+
+    <center>
+        <VBox spacing="15">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+
+            <TableView fx:id="reservationTable">
+                <columns>
+                    <TableColumn fx:id="roomColumn" text="Room" prefWidth="100"/>
+                    <TableColumn fx:id="checkInColumn" text="Check-In" prefWidth="130"/>
+                    <TableColumn fx:id="checkOutColumn" text="Check-Out" prefWidth="130"/>
+                    <TableColumn fx:id="priceColumn" text="Total Price" prefWidth="120"/>
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="120"/>
+                    <TableColumn fx:id="actionColumn" text="Action" prefWidth="120"/>
+                </columns>
+            </TableView>
+
+            <HBox alignment="CENTER_RIGHT">
+                <Button text="Back"
+                onAction="#handleBack"
+                style="-fx-background-color: #7f8c8d; -fx-text-fill: white"/>
+
+            </HBox>
+
+        </VBox>
+    </center>
+
+
+
+
+
+</BorderPane>

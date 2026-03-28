@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.hotelreservationsystem.ui.controller.NewRoomController"
+           prefWidth="950" prefHeight="420">
+
+    <AnchorPane prefWidth="950" prefHeight="420">
+
+        <Label layoutX="25" layoutY="18" text="Add New Room">
+            <font><Font size="22"/></font>
+        </Label>
+
+        <Label layoutX="25" layoutY="80" text="Room Number:"/>
+        <TextField fx:id="txtRoomNumber" layoutX="140" layoutY="76" prefWidth="250"
+                   promptText="e.g., 101"/>
+
+        <Label layoutX="25" layoutY="130" text="Room Type:"/>
+        <ComboBox fx:id="cmbRoomType" layoutX="140" layoutY="126" prefWidth="250"/>
+
+        <Button text="Save"  layoutX="140" layoutY="200" prefWidth="120" onAction="#save"/>
+        <Button text="Clear" layoutX="270" layoutY="200" prefWidth="120" onAction="#clear"/>
+        <Button text="Back"  layoutX="800" layoutY="200" prefWidth="120" onAction="#back"/>
+
+    </AnchorPane>
+</StackPane>

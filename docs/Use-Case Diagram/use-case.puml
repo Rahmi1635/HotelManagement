@@ -1,0 +1,113 @@
+@startuml use-case
+left to right direction
+skinparam actorStyle awesome
+
+actor "Customer\n(Müşteri)" as Customer
+actor "Staff\n(Personel)" as Staff
+
+rectangle "Otel Rezervasyon Sistemi" {
+
+  ' Ortak / temel use-case’ler
+  usecase "Sisteme\nkayıt olma" as UC_Register
+  usecase "Sisteme\ngiriş yapma" as UC_Login
+
+  ' ------------------------------
+  ' Customer (Müşteri) use-case’leri
+  ' ------------------------------
+  usecase "Profil bilgilerini\ngörüntüleme" as UC_ViewProfile
+  usecase "İletişim bilgilerini\ngüncelleme" as UC_UpdateContact
+  usecase "Şifre değiştirme" as UC_ChangePassword
+
+  usecase "Oda arama\n(tarih, kişi sayısı, oda tipi)" as UC_SearchRoom
+  usecase "Uygun odaları\nlisteleme" as UC_ListAvailableRooms
+  usecase "Rezervasyon\noluşturma" as UC_CreateReservation_Customer
+  usecase "Rezervasyonları\nlisteleme" as UC_ListReservations_Customer
+  usecase "Rezervasyon detayını\ngörüntüleme" as UC_ViewReservation_Customer
+  usecase "Rezervasyon iptali" as UC_CancelReservation
+  usecase "Geçmiş konaklamaları\ngörüntüleme" as UC_ViewHistory_Customer
+
+  ' ------------------------------
+  ' Staff (Personel) use-case’leri
+  ' ------------------------------
+  usecase "Yeni müşteri\nkaydı oluşturma" as UC_CreateCustomer
+  usecase "Müşteri arama\n(ad, soyad, telefon, T.C.)" as UC_SearchCustomer
+  usecase "Müşteri detayını\ngörüntüleme" as UC_ViewCustomer
+  usecase "Müşterinin\nrezervasyonlarını görüntüleme" as UC_ViewCustomerReservations
+  usecase "Müşterinin geçmiş\nkonaklamalarını görüntüleme" as UC_ViewCustomerHistory
+  usecase "Müşterinin ödeme\ndurumlarını görüntüleme" as UC_ViewPaymentStatus
+
+  usecase "Yeni oda\nkaydı oluşturma" as UC_CreateRoom
+  usecase "Oda durumlarını\ngörüntüleme\n(müsait, rezerve, dolu)" as UC_ViewRoomStatus
+  usecase "Müşteri adına\nrezervasyon oluşturma" as UC_CreateReservation_Staff
+  usecase "Rezervasyonları\nlisteleme" as UC_ListReservations_Staff
+  usecase "Rezervasyonları\nfiltreleme\n(müşteri adı, oda no/oda tipi, tarih aralığı)" as UC_FilterReservations
+  usecase "Check-in işlemi" as UC_CheckIn
+  usecase "Check-out işlemi" as UC_CheckOut
+}
+
+' ------------------------------
+' Customer ilişkileri
+' ------------------------------
+Customer -- UC_Register
+Customer -- UC_Login
+Customer -- UC_ViewProfile
+Customer -- UC_UpdateContact
+Customer -- UC_ChangePassword
+Customer -- UC_SearchRoom
+Customer -- UC_ListAvailableRooms
+Customer -- UC_CreateReservation_Customer
+Customer -- UC_ListReservations_Customer
+Customer -- UC_ViewReservation_Customer
+Customer -- UC_CancelReservation
+Customer -- UC_ViewHistory_Customer
+
+' ------------------------------
+' Staff ilişkileri
+' ------------------------------
+Staff -- UC_Login
+Staff -- UC_CreateCustomer
+Staff -- UC_SearchCustomer
+Staff -- UC_ViewCustomer
+Staff -- UC_ViewCustomerReservations
+Staff -- UC_ViewCustomerHistory
+Staff -- UC_ViewPaymentStatus
+Staff -- UC_CreateRoom
+Staff -- UC_ViewRoomStatus
+Staff -- UC_CreateReservation_Staff
+Staff -- UC_ListReservations_Staff
+Staff -- UC_FilterReservations
+Staff -- UC_CheckIn
+Staff -- UC_CheckOut
+
+' ------------------------------
+' Include / Extend ilişkileri
+' ------------------------------
+
+' Oda arama / rezervasyon akışı
+UC_ListAvailableRooms ..> UC_SearchRoom : <<include>>
+UC_CreateReservation_Customer ..> UC_ListAvailableRooms : <<include>>
+
+' Customer işlemleri için login şartı
+UC_ViewProfile ..> UC_Login : <<include>>
+UC_UpdateContact ..> UC_Login : <<include>>
+UC_ChangePassword ..> UC_Login : <<include>>
+UC_CreateReservation_Customer ..> UC_Login : <<include>>
+UC_ListReservations_Customer ..> UC_Login : <<include>>
+UC_ViewReservation_Customer ..> UC_Login : <<include>>
+UC_CancelReservation ..> UC_Login : <<include>>
+UC_ViewHistory_Customer ..> UC_Login : <<include>>
+
+' Staff müşteri işlemleri
+UC_ViewCustomer ..> UC_SearchCustomer : <<include>>
+UC_ViewCustomerReservations ..> UC_ViewCustomer : <<extend>>
+UC_ViewCustomerHistory ..> UC_ViewCustomer : <<extend>>
+UC_ViewPaymentStatus ..> UC_ViewCustomer : <<extend>>
+
+' Staff rezervasyon işlemleri için login / filtreleme
+UC_ListReservations_Staff ..> UC_Login : <<include>>
+UC_FilterReservations ..> UC_ListReservations_Staff : <<extend>>
+UC_CreateReservation_Staff ..> UC_ListReservations_Staff : <<extend>>
+UC_CheckIn ..> UC_ListReservations_Staff : <<extend>>
+UC_CheckOut ..> UC_ListReservations_Staff : <<extend>>
+
+@enduml

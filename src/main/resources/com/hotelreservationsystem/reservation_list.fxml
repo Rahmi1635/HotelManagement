@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.hotelreservationsystem.ui.controller.ReservationListController"
+           prefWidth="950" prefHeight="550">
+
+    <AnchorPane prefWidth="950" prefHeight="550">
+
+        <Label layoutX="25" layoutY="18" text="Reservation List (Staff)">
+            <font><Font size="22"/></font>
+        </Label>
+
+        <!-- Filters -->
+        <Label layoutX="25" layoutY="60" text="From:"/>
+        <DatePicker fx:id="dpFrom" layoutX="70" layoutY="56" prefWidth="140"/>
+
+        <Label layoutX="225" layoutY="60" text="To:"/>
+        <DatePicker fx:id="dpTo" layoutX="255" layoutY="56" prefWidth="140"/>
+
+        <Label layoutX="415" layoutY="60" text="Customer:"/>
+        <TextField fx:id="txtCustomer" layoutX="480" layoutY="56" prefWidth="160"
+                   promptText="Name Surname"/>
+
+        <Label layoutX="655" layoutY="60" text="Room No:"/>
+        <TextField fx:id="txtRoomNo" layoutX="720" layoutY="56" prefWidth="80" promptText="101"/>
+
+        <Label layoutX="25" layoutY="95" text="Room Type:"/>
+        <TextField fx:id="txtRoomType" layoutX="95" layoutY="91" prefWidth="140"
+                   promptText="Suite/Standard"/>
+
+        <Label layoutX="250" layoutY="95" text="Status:"/>
+        <ComboBox fx:id="cmbStatus" layoutX="305" layoutY="91" prefWidth="140"/>
+
+        <Button text="Search" layoutX="465" layoutY="90" onAction="#search" prefWidth="90"/>
+        <Button text="Clear"  layoutX="565" layoutY="90" onAction="#clear"  prefWidth="90"/>
+        <Button text="Back"   layoutX="830" layoutY="90" onAction="#back"   prefWidth="90"/>
+
+        <!-- Table -->
+        <TableView fx:id="tbl" layoutX="25" layoutY="135" prefWidth="900" prefHeight="380">
+            <columns>
+                <TableColumn fx:id="colId" text="Res.ID" prefWidth="70"/>
+                <TableColumn fx:id="colCustomer" text="Customer" prefWidth="170"/>
+                <TableColumn fx:id="colRoomNo" text="Room No" prefWidth="80"/>
+                <TableColumn fx:id="colRoomType" text="Room Type" prefWidth="120"/>
+                <TableColumn fx:id="colIn" text="Planned In" prefWidth="110"/>
+                <TableColumn fx:id="colOut" text="Planned Out" prefWidth="110"/>
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="110"/>
+                <TableColumn fx:id="colTotal" text="Total Price" prefWidth="110"/>
+            </columns>
+        </TableView>
+
+    </AnchorPane>
+</StackPane>

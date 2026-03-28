@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane prefHeight="600" prefWidth="900" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotelreservationsystem.ui.controller.CustomerProfileController">
+
+    <!-- Sol Panel -->
+    <Pane prefHeight="600" prefWidth="260" style="-fx-background-color: linear-gradient(to bottom right,#2f3f89,#9231b5);" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0">
+
+        <VBox alignment="CENTER" layoutY="150" prefWidth="260" spacing="20">
+            <Circle fx:id="profilePhoto" radius="60" style="-fx-fill: white; -fx-opacity: 0.9;" />
+
+            <Label fx:id="lblCustomerName" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;" text="John Doe" />
+
+            <Button style="-fx-background-color: transparent; -fx-border-color: white;                            -fx-border-radius: 20; -fx-text-fill: white; -fx-padding: 5 20;                            -fx-cursor: hand;" text="Change Photo" />
+        </VBox>
+    </Pane>
+
+    <!-- Sağ Form -->
+    <VBox prefWidth="550" spacing="20" AnchorPane.leftAnchor="300" AnchorPane.topAnchor="40">
+
+        <Label style="-fx-font-size: 22px; -fx-text-fill: #333; -fx-font-weight: bold;" text="Profile Information" />
+
+        <GridPane hgap="20" prefHeight="262.0" prefWidth="533.0" style="-fx-background-color: white;-fx-padding: 25;-fx-background-radius: 15;-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 2);" vgap="20">
+
+            <Label text="First Name:" GridPane.rowIndex="2" />
+            <TextField fx:id="txtFirstName" promptText="Enter first name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label text="Email:" GridPane.rowIndex="4" />
+            <TextField fx:id="txtEmail" promptText="Enter email" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+            <Label text="Phone:" GridPane.rowIndex="5" />
+            <TextField fx:id="txtPhone" promptText="Enter phone number" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+            <Label text="Password:" GridPane.rowIndex="7" />
+            <PasswordField fx:id="txtPassword" promptText="Enter new password" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+         <Label text="Last Name" GridPane.rowIndex="3" />
+         <TextField fx:id="txtLastName" promptText="Enter Last Name" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+
+        </GridPane>
+
+        <Button fx:id="btnSave" onAction="#saveInfo" prefHeight="40" prefWidth="180" styleClass="login-btn" text="Save Changes" />
+
+    </VBox>
+   <Button layoutX="834.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeForm" prefHeight="26.0" prefWidth="37.0" styleClass="close" stylesheets="@cssFile/logIn.css" text="X" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="3.0" />
+
+</AnchorPane>

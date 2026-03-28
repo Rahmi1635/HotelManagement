@@ -1,0 +1,29 @@
+@startuml
+package "com.hotelreservationsystem.domain.room.decorator" {
+
+  interface RoomComponent {
+    + getRoomId() : Long
+    + getRoomNumber() : String
+    + getName() : String
+    + getCapacity() : int
+    + getDescription() : String
+    + getPricePerNight() : double
+  }
+
+  abstract class RoomDecorator {
+    # room : RoomComponent
+
+    + RoomDecorator(room : RoomComponent)
+
+    + getRoomId() : Long
+    + getRoomNumber() : String
+    + getName() : String
+    + getCapacity() : int
+    + getDescription() : String
+    + getPricePerNight() : double
+  }
+
+  RoomDecorator ..|> RoomComponent
+  RoomDecorator *-- RoomComponent : decorates
+}
+@enduml

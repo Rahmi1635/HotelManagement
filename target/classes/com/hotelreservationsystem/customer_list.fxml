@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.hotelreservationsystem.ui.controller.CustomerListController"
+           prefWidth="950" prefHeight="550">
+
+    <AnchorPane prefWidth="950" prefHeight="550">
+
+        <Label layoutX="25" layoutY="18" text="List / Search Customers">
+            <font><Font size="22"/></font>
+        </Label>
+
+        <!-- Filters -->
+        <Label layoutX="25" layoutY="65" text="ID:"/>
+        <TextField fx:id="txtId" layoutX="60" layoutY="61" prefWidth="90" promptText="e.g., 12"/>
+
+        <Label layoutX="165" layoutY="65" text="TC:"/>
+        <TextField fx:id="txtTcno" layoutX="200" layoutY="61" prefWidth="140" promptText="tcno"/>
+
+        <Label layoutX="355" layoutY="65" text="Phone:"/>
+        <TextField fx:id="txtPhone" layoutX="410" layoutY="61" prefWidth="140" promptText="05xx..."/>
+
+        <Label layoutX="25" layoutY="100" text="First Name:"/>
+        <TextField fx:id="txtFirstName" layoutX="95" layoutY="96" prefWidth="140"/>
+
+        <Label layoutX="250" layoutY="100" text="Last Name:"/>
+        <TextField fx:id="txtLastName" layoutX="320" layoutY="96" prefWidth="140"/>
+
+        <Button text="Search" layoutX="480" layoutY="94" prefWidth="90" onAction="#search"/>
+        <Button text="Clear"  layoutX="580" layoutY="94" prefWidth="90" onAction="#clear"/>
+        <Button text="Refresh" layoutX="680" layoutY="94" prefWidth="90" onAction="#refresh"/>
+        <Button text="Back"   layoutX="830" layoutY="94" prefWidth="90" onAction="#back"/>
+
+        <TableView fx:id="tblCustomers" layoutX="25" layoutY="140" prefWidth="900" prefHeight="330">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+                <TableColumn fx:id="colFirstName" text="First Name" prefWidth="120"/>
+                <TableColumn fx:id="colLastName" text="Last Name" prefWidth="120"/>
+                <TableColumn fx:id="colUsername" text="Username" prefWidth="130"/>
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="180"/>
+                <TableColumn fx:id="colPhone" text="Phone" prefWidth="120"/>
+                <TableColumn fx:id="colTcno" text="TC" prefWidth="140"/>
+            </columns>
+        </TableView>
+
+        <Label layoutX="25" layoutY="490" text="Selected:"/>
+        <TextField fx:id="txtSelected" layoutX="95" layoutY="486" prefWidth="520" editable="false"/>
+
+    </AnchorPane>
+</StackPane>
